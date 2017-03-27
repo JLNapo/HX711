@@ -52,7 +52,8 @@ long HX711::read() {
 	// wait for the chip to become ready
 	while (!is_ready()) {
 		// Will do nothing on Arduino but prevent resets of ESP8266 (Watchdog Issue)
-		yield();
+		//yield(); => not work with NodeMCU 3.0
+		delay(100); // it's ok for NodeMCU 3.0 Arduino IDE ver 1.8.2
 	}
 
 	unsigned long value = 0;
